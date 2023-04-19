@@ -15,6 +15,7 @@ router.get('/notes', (req, res) => {
     const notes = JSON.parse(fs.readFileSync(path.join(__dirname, '../db/db.json'), 'utf8'));
     const newNote = { ...req.body, id: uuidv4() };
     notes.push(newNote);
+    console.log(JSON.stringify(notes, null, 2))
     fs.writeFileSync(path.join(__dirname, '../db/db.json'), JSON.stringify(notes, null, 2));
     res.json(newNote);
   });
